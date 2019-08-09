@@ -14,7 +14,7 @@ const App = () => {
   const APIRequest = `https://api.edamam.com/search?q=${query}&app_id=${App_ID}&app_key=${API_KEY}`;
 
   useEffect(() => {
-    //getRecipes();
+    getRecipes();
   }, [query]);
 
   //make async calls to the api
@@ -49,15 +49,17 @@ const App = () => {
           search
         </button>
       </form>
-      {recipes.map(recipeData => (
-        <Recipes
-          key={recipeData.recipe.label}
-          title={recipeData.recipe.label}
-          calories={recipeData.recipe.calories}
-          ingredients={recipeData.recipe.ingredients}
-          image={recipeData.recipe.image}
-        />
-      ))}
+      <div className="flex_it">
+        {recipes.map(recipeData => (
+          <Recipes
+            key={recipeData.recipe.calories}
+            title={recipeData.recipe.label}
+            calories={recipeData.recipe.calories}
+            ingredients={recipeData.recipe.ingredients}
+            image={recipeData.recipe.image}
+          />
+        ))}
+      </div>
     </div>
   );
 };

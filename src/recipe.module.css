@@ -1,7 +1,9 @@
+/*this style sheet will only affect the recipe component*/
 .recipe_card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 45%;
+  width: 30%;
+  border-radius: 55;
 }
 
 .recipe_card:hover {
@@ -10,4 +12,38 @@
 
 .card_text {
   text-align: center;
+}
+ul {
+  list-style: none;
+}
+
+img {
+  border-radius: 30%;
+  padding: 20px 10px;
+  width: inherit;
+}
+
+li {
+  text-align: left;
+}
+
+@media only screen and (max-width: 1024px) {
+  .recipe_card {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .recipe_card {
+    width: 85%;
+  }
+  img {
+    width: inherit;
+  }
+}
+
+@media only screen and (max-width: 426px) {
+  .recipe_card {
+    width: 95%;
+  }
 }
