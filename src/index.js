@@ -12,9 +12,10 @@ const App = () => {
   const APIRequest = `https://api.edamam.com/search?q=chicken&app_id=${App_ID}&app_key=${API_KEY}`;
 
   const [recipes, setRecipesArray] = useState([]);
+  var [search, setSearch] = useState("");
 
   useEffect(() => {
-    getRecipes();
+    //getRecipes();
   }, []);
 
   //make async calls to the api
@@ -22,20 +23,36 @@ const App = () => {
     const response = await fetch(APIRequest);
     const data = await response.json();
     setRecipesArray(data.hits);
-    console.log(data.hits);
+    //console.log(data.hits);
+  };
+
+  //update search
+  const updateSearch = e => {
+    setSearch(e.target.value);
+    //console.log({ search });
   };
 
   return (
     <div className="App">
       <h1> Hello React</h1>
       <form className="search_form">
-        <input tyoe="text" className="search_bar" />
+        <input
+          type="text"
+          className="search_bar"
+          value={search}
+          onChange={updateSearch}
+        />
         <button type="submit" className="search_button">
           search
         </button>
       </form>
-      {recipes.map(recipe => (
-        <Recipes />
+      {recipes.map(recipeData => (
+        <Recipes
+          key={recipeData.recipe.label}
+          title={recipeData.recipe.label}
+          calories={recipeData.recipe.calories}
+          image={recipeData.recipe.image}
+        />
       ))}
     </div>
   );
