@@ -22,13 +22,11 @@ const App = () => {
     const response = await fetch(APIRequest);
     const data = await response.json();
     setRecipesArray(data.hits);
-    //console.log(data.hits);
   };
 
   //update search
   var updateSearch = e => {
     setSearch(e.target.value);
-    //console.log({ search });
   };
 
   var getSearch = e => {
