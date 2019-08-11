@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Recipes from "./recipe";
 import "./styles.css";
 
-const App = () => {
+  const App = () => {
   const App_ID = process.env.REACT_APP_ID;
   const API_KEY = process.env.REACT_APP_API_KEY;
 
