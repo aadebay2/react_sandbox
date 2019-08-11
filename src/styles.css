@@ -1,4 +1,19 @@
+body {
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+
+/* flex box*/
+.flex_it {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.search_form {
+  padding-bottom: 20px;
 }

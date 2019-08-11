@@ -1,26 +1,65 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Recipes from "./recipe";
 import "./styles.css";
 
-const App = () => {
+  const App = () => {
   const App_ID = process.env.REACT_APP_ID;
   const API_KEY = process.env.REACT_APP_API_KEY;
 
-  const ExampleRequest = `https://api.edamam.com/search?q=chicken&app_id=${App_ID}&app_key=${API_KEY}`;
+  const [recipes, setRecipesArray] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("chicken");
 
-  const [counter, setCounter] = useState(0);
+  const APIRequest = `https://api.edamam.com/search?q=${query}&app_id=${App_ID}&app_key=${API_KEY}`;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
+
+  //make async calls to the api
+  var getRecipes = async () => {
+    const response = await fetch(APIRequest);
+    const data = await response.json();
+    setRecipesArray(data.hits);
+  };
+
+  //update search
+  var updateSearch = e => {
+    setSearch(e.target.value);
+  };
+
+  var getSearch = e => {
+    e.preventDefault();
+    setQuery(search);
+    setSearch("");
+  };
 
   return (
     <div className="App">
-      <h1> Hello React</h1>
-      <form className="search_form">
-        <input tyoe="text" className="search_bar" />
+      <h1> Food Recipies</h1>
+      <form onSubmit={getSearch} className="search_form">
+        <input
+          type="text"
+          className="search_bar"
+          value={search}
+          onChange={updateSearch}
+        />
         <button type="submit" className="search_button">
           search
         </button>
       </form>
+      <div className="flex_it">
+        {recipes.map(recipeData => (
+          <Recipes
+            key={recipeData.recipe.calories}
+            title={recipeData.recipe.label}
+            calories={recipeData.recipe.calories}
+            ingredients={recipeData.recipe.ingredients}
+            image={recipeData.recipe.image}
+          />
+        ))}
+      </div>
     </div>
   );
 };
