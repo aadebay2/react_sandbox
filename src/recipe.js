@@ -1,10 +1,10 @@
 import React from "react";
 import Style from "./recipe.module.css";
 
-const Recipes = ({ key, title, calories, image, ingredients }) => {
+const Recipes = ({ title, calories, image, ingredients }) => {
   return (
     //this component would be used to render all results from the API query
-    <div className={Style.recipe_card}>
+    <div className={Style.recipe_card} key={title}>
       <img src={image} alt="" />
       <div className={Style.card_text}>
         <h1> {title} </h1>
