@@ -52,7 +52,6 @@ const App = () => {
       <div className="flex_it">
         {recipes.map(recipeData => (
           <Recipes
-            key={recipeData.recipe.calories}
             title={recipeData.recipe.label}
             calories={recipeData.recipe.calories}
             ingredients={recipeData.recipe.ingredients}
@@ -64,6 +63,5 @@ const App = () => {
   );
 };
 
-//export default App;
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
